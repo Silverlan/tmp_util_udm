@@ -21,8 +21,8 @@ jobs:
             name: "Ubuntu GCC-11"
             artifact: "ubuntu_gcc.7z"
             build_type: "RelWithDebInfo"
-            cc: "clang-14"
-            cxx: "clang++-14"
+            cc: "clang-15"
+            cxx: "clang++-15"
             archiver: "7z a"
             generators: "Unix Makefiles"
             build_dir: 'build'
