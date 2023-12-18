@@ -54,6 +54,11 @@ jobs:
           repo-directory: '${{ github.workspace }}'
           build_shared: '0'
           build-directory: './build_static'
+
+      - name: Print All Files
+        shell: bash
+        run: |
+          ls -R
           
       - name: Create Release Files
         shell: bash
