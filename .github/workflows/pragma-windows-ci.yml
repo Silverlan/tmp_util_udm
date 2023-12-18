@@ -41,22 +41,33 @@ jobs:
         uses: Silverlan/common_actions/download_build_binaries@main
         continue-on-error: true
           
-      - name: Build
+      - name: Build Static Library
+        id: build
+        uses: Silverlan/util_udm/github_actions/build@master
+        with:
+          repo-directory: '${{ github.workspace }}'
+          build_shared: '0'
+          build-directory: './build_static'
+          
+      - name: Build Dynamic Library
         id: build
         uses: Silverlan/util_udm/github_actions/build@master
         with:
           repo-directory: '${{ github.workspace }}'
           build_shared: '1'
+          build-directory: './build_dynamic'
           
       - name: Create Release Files
         shell: bash
         run: |
           mkdir release
-          #mkdir release/lib
-          #cp build/${{ matrix.config.build_type }}/util_udm.lib release/lib/util_udm.lib
+
+          mkdir release/lib
+          cp build_static/${{ matrix.config.build_type }}/util_udm.lib release/lib/util_udm.lib
+
           mkdir release/bin
-          cp build/${{ matrix.config.build_type }}/util_udm.dll release/bin/util_udm.dll
-          cp build/${{ matrix.config.build_type }}/util_udm.lib release/bin/util_udm.lib
+          cp build_dynamic/${{ matrix.config.build_type }}/util_udm.dll release/bin/util_udm.dll
+          cp build_dynamic/${{ matrix.config.build_type }}/util_udm.lib release/bin/util_udm.lib
           
       - name: Release Binaries
         uses: Silverlan/common_actions/release_nightly_binaries@main
