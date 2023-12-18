@@ -42,7 +42,7 @@ jobs:
         continue-on-error: true
           
       - name: Build Static Library
-        id: build
+        id: build-static
         uses: Silverlan/util_udm/github_actions/build@master
         with:
           repo-directory: '${{ github.workspace }}'
@@ -50,7 +50,7 @@ jobs:
           build-directory: './build_static'
           
       - name: Build Dynamic Library
-        id: build
+        id: build-dynamic
         uses: Silverlan/util_udm/github_actions/build@master
         with:
           repo-directory: '${{ github.workspace }}'
