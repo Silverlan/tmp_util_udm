@@ -52,8 +52,11 @@ jobs:
         shell: bash
         run: |
           mkdir release
-          mkdir release/lib
-          cp build/${{ matrix.config.build_type }}/util_udm.lib release/lib/util_udm.lib
+          #mkdir release/lib
+          #cp build/${{ matrix.config.build_type }}/util_udm.lib release/lib/util_udm.lib
+          mkdir release/bin
+          cp build/${{ matrix.config.build_type }}/util_udm.dll release/bin/util_udm.dll
+          cp build/${{ matrix.config.build_type }}/util_udm.lib release/bin/util_udm.lib
           
       - name: Release Binaries
         uses: Silverlan/common_actions/release_nightly_binaries@main
