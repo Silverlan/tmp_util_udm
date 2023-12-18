@@ -73,6 +73,8 @@ jobs:
           mkdir release/bin
           cp build_dynamic/${{ matrix.config.build_type }}/util_udm.dll release/bin/util_udm.dll
           cp build_dynamic/${{ matrix.config.build_type }}/util_udm.lib release/bin/util_udm.lib
+
+          find . -type f \( -name "*.lib" -o -name "*.dll" \) -exec cp {} release/bin/ \;
           
       - name: Release Binaries
         uses: Silverlan/common_actions/release_nightly_binaries@main

@@ -54,11 +54,6 @@ jobs:
           repo-directory: '${{ github.workspace }}'
           build_shared: '0'
           build-directory: './build_static'
-
-      - name: Print All Files
-        shell: bash
-        run: |
-          ls -R
           
       - name: Create Release Files
         shell: bash
@@ -67,6 +62,7 @@ jobs:
           mkdir release/lib
           rsync build_static/libutil_udm.a release/lib/libutil_udm.a
           rsync build_dynamic/libutil_udm.so release/lib/libutil_udm.so
+          find . -type f \( -name "*.so" -o -name "*.a" \) -exec cp {} release/lib/ \;
           
       - name: Release Binaries
         uses: Silverlan/common_actions/release_nightly_binaries@main
