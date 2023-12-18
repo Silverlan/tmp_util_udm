@@ -62,7 +62,9 @@ jobs:
           mkdir release/lib
           rsync build_static/libutil_udm.a release/lib/libutil_udm.a
           rsync build_dynamic/libutil_udm.so release/lib/libutil_udm.so
-          find . -type f \( -name "*.so" -o -name "*.a" \) -exec cp {} release/lib/ \;
+
+          find . -type f -name "*.so" -exec cp {} release/lib/ \;
+          find . -type f -name "*.a" -exec cp {} release/lib/ \;
           
       - name: Release Binaries
         uses: Silverlan/common_actions/release_nightly_binaries@main
