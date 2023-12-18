@@ -38,6 +38,14 @@ jobs:
       - name: Download binaries
         uses: Silverlan/common_actions/download_build_binaries@main
         continue-on-error: true
+
+      - name: Build Dynamic Library
+        id: build-dynamic
+        uses: Silverlan/util_udm/github_actions/build@master
+        with:
+          repo-directory: '${{ github.workspace }}'
+          build_shared: '1'
+          build-directory: './build_dynamic'
           
       - name: Build Static Library
         id: build-static
@@ -46,14 +54,6 @@ jobs:
           repo-directory: '${{ github.workspace }}'
           build_shared: '0'
           build-directory: './build_static'
-          
-      - name: Build Dynamic Library
-        id: build-dynamic
-        uses: Silverlan/util_udm/github_actions/build@master
-        with:
-          repo-directory: '${{ github.workspace }}'
-          build_shared: '1'
-          build-directory: './build_dynamic'
           
       - name: Create Release Files
         shell: bash
