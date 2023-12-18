@@ -46,7 +46,7 @@ jobs:
         uses: Silverlan/util_udm/github_actions/build@master
         with:
           repo-directory: '${{ github.workspace }}'
-          build_shared: '0'
+          build_shared: '1'
           
       - name: Create Release Files
         shell: bash
