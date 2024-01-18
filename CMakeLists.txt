@@ -113,6 +113,8 @@ if(WIN32)
 endif()
 def_vs_filters("${SRC_FILES}")
 
+add_dependencies(util_udm mathutil sharedutils vfilesystem)
+
 foreach(LIB IN LISTS LIBRARIES)
 	target_link_libraries(${PROJ_NAME} ${${LIB}})
 endforeach(LIB)
